@@ -5,14 +5,15 @@ let
     neovide
     xclip
     nixfmt
-    omnisharp-roslyn
     rnix-lsp
     gopls
   ];
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in
 {
   imports = [ 
     ./hardware-configuration.nix
+    (import "${home-manager}/nixos")
   ];
 
   boot = {
@@ -56,20 +57,43 @@ in
       "networkmanager"
     ]; 
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    wget
-    firefox
-    github-desktop
-  ] ++ mynvim;
+  home-manager.users.hcssmith = {
+    home = {
+      keyboard = null;
+      packages = with pkgs; [
+        github-desktop
+      ] ++ mynvim;
+    };
+    programs = {
+      firefox = {
+        enable = true;
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          https-everywhere
+          privacy-badger
+          lastpass-password-manager
+          ublock-origin
+        ];
+        profiles.hallam = {
+          id = 0;
+          isDefault = true;
+          settings = {
+            "browser.startup.homepage" = "https://duckduckgo.com/?kae=d&kp=-2&kak=-1&kax=-1&kaq=-1&kao=-1&kap=-1&kau=-1";
+            "signon.rememberSignons" = true;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          };
+        };
+      };
+    };
+  };
 
   nixpkgs = {
     config = {
       allowUnfree = true;
       packageOverrides = pkgs:
         with pkgs; rec {
+          nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+            inherit pkgs;
+          };
           myEmacs = emacsWithPackages (epkgs:
             (with epkgs.melpaStablePackages; [
               nix-mode
