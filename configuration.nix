@@ -4,9 +4,6 @@ let
     myNeovim
     neovide
     xclip
-    nixfmt
-    rnix-lsp
-    gopls
   ];
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in
