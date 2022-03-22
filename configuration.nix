@@ -54,7 +54,6 @@ in
     extraGroups = [ 
       "wheel" 
       "networkmanager"
-      "docker"
     ]; 
   };
 
@@ -64,7 +63,6 @@ in
     wget
     firefox
     github-desktop
-    go
   ] ++ mynvim;
 
   nixpkgs = {
@@ -88,9 +86,10 @@ in
                   vim-csharp 
                   vim-go
                   vim-airline
-                  LanguageClient-neovim 
                   vim-javascript
                   nerdtree
+                  nvim-lspconfig
+                  direnv-vim
                 ];
               };
               customRC = ''
@@ -114,19 +113,40 @@ in
                 set backupdir=/tmp
                 set directory=/tmp
 
-                let g:LanguageClient_serverCommands = {
-                  \ 'cs': ['${omnisharp-roslyn}/bin/omnisharp', '-lsp'],
-                  \ 'nix': ['${rnix-lsp}/bin/rnix-lsp'],
-                  \ 'go': ['${gopls}/bin/gopls']
-                  \ }
+                nnoremap <silent> gd :lua vim.lsp.buf.definition()<CR>
+                nnoremap <silent> gD :lua vim.lsp.buf.declaration()<CR>
+                nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
+                nnoremap <silent> gi :lua vim.lsp.buf.implementation()<CR>
+                nnoremap <silent> gr :lua vim.lsp.buf.references()<CR>
+                nnoremap <silent> <space>wa :lua vim.lsp.buf.add_workspace_folder()<CR>
 
-                nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-                nnoremap <silent> gh :call LanguageClient_textDocument_hover()<CR>
-                nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-                nnoremap <silent> gr :call LanguageClient_textDocument_references()<CR>
-                nnoremap <silent> gs :call LanguageClient_textDocument_documentSymbol()<CR>
-                nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-                nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<CR>
+                nnoremap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+                nnoremap <silent> <space>wr :lua vim.lsp.buf.remove_workspace_folder()<CR>
+                nnoremap <silent> <space>wl :lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
+                nnoremap <silent> <space>D :lua vim.lsp.buf.type_definition()<CR>
+                nnoremap <silent> <space>rn :lua vim.lsp.buf.rename()<CR>
+                nnoremap <silent> <space>ca :lua vim.lsp.buf.code_action()<CR>
+                nnoremap <silent> <space>f :lua vim.lsp.buf.formatting()<CR>
+
+                nnoremap <silent> <space>e :lua vim.diagnostic.open_float()<CR>
+                nnoremap <silent> [d :lua vim.diagnostic.goto_prev()<CR>
+                nnoremap <silent> ]d :lua vim.diagnostic.goto_next()<CR>
+                nnoremap <silent> <space>q :lua vim.diagnostic.setloclist()<CR>
+
+                set omnifunc=v:lua.vim.lsp.omnifunc
+
+                lua << EOF
+
+                  local servers = { 'gopls', 'rnix' }
+                  for _, lsp in pairs(servers) do
+                    require('lspconfig')[lsp].setup {
+                      on_attach = on_attach,
+                      flags = {
+                        debounce_text_changes = 150,
+                      }
+                    }
+                  end
+                EOF
 
                 autocmd StdinReadPre * let s:std_in=1
                 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
