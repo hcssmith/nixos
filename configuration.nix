@@ -77,6 +77,7 @@ in
             "browser.startup.homepage" = "https://duckduckgo.com/?kae=d&kp=-2&kak=-1&kax=-1&kaq=-1&kao=-1&kap=-1&kau=-1";
             "signon.rememberSignons" = true;
           };
+          userChrome = builtins.readFile /etc/nixos/config/firefox/chrome.css;
         };
       };
     };
