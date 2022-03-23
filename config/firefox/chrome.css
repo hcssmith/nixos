@@ -1,22 +1,3 @@
-:root {
-	--border: #93a1a1;
-	--background:#2e3440;
-	--foreground:#d8dee9;
-}
-
-#appMenu-mainView {
-	background: var(--background) !important;
-	color: var(--foreground) !important;
-};
-
-toolbarseparator {
-	border-color: var(--border) !important;
-};
-
-.browserContainer findbar {
-	background: var(--background) !important;
-	color: var(--foreground) !important;
-};
 
 /*
  *  Hide window controls
@@ -29,34 +10,45 @@ toolbarseparator {
 #TabsToolbar .titlebar-spacer{ display: none; }
 #navigator-toolbox::after{ display: none !important; }
 
+:root {
+		background: #2e3440;
+		color: #d8dee9;
+}
+
 
 /*
  *  Hide all the clutter in the navbar
  */
-#main-window :-moz-any(#back-button,
+#main-window :-moz-any(
 		       #forward-button,
 		       #stop-reload-button,
 		       #home-button,
 		       #library-button,
 		       #sidebar-button,
-		       #star-button,
 		       #pocket-button,
 		       #permissions-granted-icon,
 		       #fxa-toolbar-menu-button,
-		       #ublock0_raymondhill_net-browser-action,
-		       #https-everywhere_eff_org-browser-action,
-		       #jid1-mnnxcxisbpnsxq_jetpack-browser-action,
-		       #support_lastpass_com-browser-action
-		       ) { display: none !important; }
+		       #_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action, /* Vimium */
+		       #ublock0_raymondhill_net-browser-action) { display: none !important; }
+
+/*
+ *  Hide tabs if only one tab
+ */
+#titlebar .tabbrowser-tab[first-visible-tab="true"][last-visible-tab="true"]{
+    display: none !important;
+}
 
 /*
  *  Minimal theme
  */
 #navigator-toolbox {
-    font-family: 'Monospace' !important;
+    font-family: 'Menlo' !important;
     border-bottom: 1px;
-    border-bottom-color: var(--border) !important;
+    border-bottom-color: #93a1a1 !important;
+    background-color: #2e3440 !important;
 }
+
+
 
 #navigator-toolbox toolbarspring {
     display: none;
@@ -68,7 +60,7 @@ toolbarseparator {
 }
 
 .tab-line[selected=true] {
-    background-color: @tabLineColour@ !important;
+    background-color: #2e3440 !important;
 }
 
 #navigator-toolbox #urlbar-container {
@@ -89,7 +81,7 @@ toolbarseparator {
 }
 
 #navigator-toolbox #nav-bar {
-    background: var(--background) !important;
+    background: #2e3440 !important;
     box-shadow: none !important;
 }
 
@@ -120,12 +112,12 @@ toolbarseparator {
 }
 
 #navigator-toolbox .toolbar-items {
-    background: var(--background)  !important;
+    background: #2e3440  !important;
 }
 
 #navigator-toolbox #urlbar {
-    background: var(--background) !important;;
-    color: var(--foreground) !important;
+    background: #2e3440 !important;;
+    color: #d8dee9 !important;
     padding: 0 !important;
     padding-left: 1ch !important;
     font-size: 13px;
@@ -133,13 +125,13 @@ toolbarseparator {
 }
 
 #navigator-toolbox #urlbar-background {
-    background: var(--background) !important;;
+    background: #2e3440 !important;;
     border: none !important;
     margin: 0 !important;
 }
 
 #navigator-toolbox #nav-bar-customization-target {
-    background: var(--background) !important;;
+    background: #2e3440 !important;;
 }
 
 #navigator-toolbox .toolbarbutton-1 {
@@ -147,42 +139,44 @@ toolbarseparator {
 }
 
 #navigator-toolbox #downloads-button {
-    color: var(--background) ;
-    background: var(--background) !important;
+    color: #2e3440 ;
+    background: #2e3440 !important;
 }
 
 #navigator-toolbox #PanelUI-button {
     opacity: 1 !important;
-    background: var(--background) !important;
+    background: #2e3440 !important;
 }
 
 #navigator-toolbox #PanelUI-menu-button {
-    background: var(--background) !important;
-    color: var(--foreground) !important;
+    background: #2e3440 !important;
+    color: #d8dee9 !important;
 }
 
 #navigator-toolbox .tabbrowser-tab {
-    font-size: 10px;
+    font-size: 12px
+}
+
+#tab-content {
+		height: 100px;
 }
 
 #navigator-toolbox .tab-background {
-    background: var(--background)  !important;
+    background: #2e3440  !important;
     box-shadow: none!important;
     border: none !important;
 }
 
 #navigator-toolbox .tabbrowser-tab .tab-label {
-    color: var(--foreground) !important;
+    color: #d8dee9 !important;
 }
 
 #navigator-toolbox .tab-background[selected="true"] {
-    background: var(--background)  !important;
-    box-shadow: none!important;
-    border: none !important;
+    background: #2e3440  !important;
 }
 
 #navigator-toolbox .tabbrowser-tab[selected="true"] .tab-label {
-    color: var(--foreground) !important;
+    color: #d8dee9 !important;
 }
 
 #navigator-toolbox .tabbrowser-tab::after {
@@ -234,11 +228,11 @@ toolbarseparator {
 
 /* Modify these to change relative widths or default height */
 #navigator-toolbox{
-    --uc-navigationbar-width: 40vw;
-    --uc-toolbar-height: 30px;
+    --uc-navigationbar-width: 50vw;
+    --uc-toolbar-height: 40px;
 }
 /* Override for other densities */
-:root[uidensity="compact"] #navigator-toolbox{ --uc-toolbar-height: 28px; }
+:root[uidensity="compact"] #navigator-toolbox{ --uc-toolbar-height: 32px; }
 :root[uidensity="touch"] #navigator-toolbox{ --uc-toolbar-height: 40px; }
 
 :root[uidensity=compact] #urlbar-container.megabar{
@@ -256,7 +250,7 @@ toolbarseparator {
 }
 
 #TabsToolbar{ margin-left: var(--uc-navigationbar-width); }
-#tabbrowser-tabs{ --tab-min-height: var(--uc-toolbar-height) !important; }/*z-index:0 !important; }*/
+#tabbrowser-tabs{ --tab-min-height: var(--uc-toolbar-height) !important; }
 
 /* This isn't useful when tabs start in the middle of the window */
 .titlebar-placeholder[type="pre-tabs"],
