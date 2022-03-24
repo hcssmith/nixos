@@ -96,12 +96,6 @@ in
           nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
             inherit pkgs;
           };
-          myEmacs = emacsWithPackages (epkgs:
-            (with epkgs.melpaStablePackages; [
-              nix-mode
-              nixos-options
-              zerodark-theme
-            ]));
           myNeovim = neovim.override {
             vimAlias = true;
             configure = {
