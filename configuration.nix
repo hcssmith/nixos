@@ -112,6 +112,9 @@ in
                   vim-go
                   vim-airline
                   vim-javascript
+                  vim-airline
+                  vim-airline-themes
+                  NeoSolarized
                   nerdtree
                   nvim-lspconfig
                   direnv-vim

@@ -4,6 +4,9 @@ set tabstop=4
 set mouse=a
 set clipboard=unnamedplus
 
+let g:airline_theme='solarized_flood'
+colorscheme NeoSolarized
+
 let NERDTreeChDirMode=2
 
 set guifont=Source\ Code\ Pro:h10
