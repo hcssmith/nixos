@@ -82,9 +82,6 @@
      /* zoom indicator */
      #urlbar-zoom-button { display: none !important; }
 
-     /*  hides context burger menu BUT causes popups to be buggy at times */
-     #PanelUI-button { display: none !important; }
-
      #reader-mode-button{ display: none !important; }
 
      /* tracking protection shield icon */
@@ -260,6 +257,10 @@ window,
 .tabbrowser-tab[selected]
     > .tab-stack
     > .tab-background { background: var(--uc-hover-colour) !important; }
+
+/* tab foreground */
+.tabbrowser-tab
+    > .tab-stack { color: var(--uc-inverted-colour) !important; }
 
 
 /* tab close button options */
