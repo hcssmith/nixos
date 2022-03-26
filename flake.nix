@@ -6,7 +6,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR/master";
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/master";
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
   };
   outputs = inputs@{ self, nixpkgs, home-manager, nur, utils }:
     utils.lib.mkFlake {
