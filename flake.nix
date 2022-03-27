@@ -7,8 +7,9 @@
     };
     nur.url = "github:nix-community/NUR/master";
     utils.url = "github:gytis-ivaskevicius/flake-utils-plus/v1.3.1";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
-  outputs = inputs@{ self, nixpkgs, home-manager, nur, utils }:
+  outputs = inputs@{ self, nixpkgs, home-manager, nur, utils, neovim-nightly-overlay }:
     utils.lib.mkFlake {
       inherit self inputs;
 
@@ -17,6 +18,7 @@
       sharedOverlays = [ 
         self.overlay
         nur.overlay 
+        neovim-nightly-overlay.overlay
       ];
 
       overlay = import ./overlays;
@@ -33,6 +35,7 @@
         ./home/hcssmith.nix
         ./users/hcssmith.nix
         ./modules/gnome.nix
+        ./modules/cachix.nix
       ];
     };
 }
