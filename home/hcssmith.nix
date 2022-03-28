@@ -6,6 +6,7 @@
         packages = with pkgs; [ github-desktop neovide neovim-o xclip ];
       };
       programs = {
+        gpg = { enable = true; };
         firefox = {
           enable = true;
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -24,6 +25,13 @@
             };
             userChrome = builtins.readFile ../config/firefox/chrome.css;
           };
+        };
+      };
+      services = {
+        gpg-agent = {
+          enable = true;
+          defaultCacheTtl = 10006400;
+          pinentryFlavor = "qt";
         };
       };
     };
