@@ -31,11 +31,11 @@
       ];
 
       hosts.eru.modules = [
-        ./hosts/eru/eru.nix
-        ./home/hcssmith.nix
-        ./users/hcssmith.nix
-        ./modules/gnome.nix
-        ./modules/cachix.nix
+        ./hosts/eru
+        ./home/hcssmith
+        ./users/hcssmith
+        ./modules/gnome
+        ./modules/cachix
       ];
     };
 }

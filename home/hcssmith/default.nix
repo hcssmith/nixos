@@ -3,7 +3,14 @@
     users.hcssmith = {
       home = {
         keyboard = null;
-        packages = with pkgs; [ github-desktop neovide neovim-o xclip secret st-o ];
+        packages = with pkgs; [
+          github-desktop
+          neovide
+          neovim-o
+          xclip
+          secret
+          st-o
+        ];
       };
       accounts.email.accounts = {
         hcssmith = {
@@ -30,20 +37,17 @@
               useStartTls = false;
             };
           };
-          notmuch = {
-            enable = true;
-          };
+          notmuch = { enable = true; };
           mbsync = {
             enable = true;
             create = "maildir";
           };
           userName = "me@hcssmith.com";
           realName = "Hallam Smith";
-          passwordCommand = "${pkgs.secret}/bin/secret -p hcssmith.com#email -k 0x6777079D642D66A8";
-          msmtp.enable = true; 
-          astroid = {
-            enable = true;
-          };
+          passwordCommand =
+            "${pkgs.secret}/bin/secret -p hcssmith.com#email -k 0x6777079D642D66A8";
+          msmtp.enable = true;
+          astroid = { enable = true; };
           neomutt = {
             enable = true;
             extraConfig = ''
@@ -55,26 +59,20 @@
       };
       programs = {
         gpg = { enable = true; };
-        astroid = { 
+        astroid = {
           enable = true;
           extraConfig = {
-          editor.cmd = "st -w %3 -e nvim -c 'colorscheme darkblue' -- %1";
+            editor.cmd = "st -w %3 -e nvim -c 'colorscheme darkblue' -- %1";
           };
           pollScript = ''
             set -e
             mbsync -a
             notmuch new
-            '';
+          '';
         };
-        notmuch = {
-          enable = true;
-        };
-        mbsync = {
-          enable = true;
-        };
-        msmtp = {
-          enable = true;
-        };
+        notmuch = { enable = true; };
+        mbsync = { enable = true; };
+        msmtp = { enable = true; };
         firefox = {
           enable = true;
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
