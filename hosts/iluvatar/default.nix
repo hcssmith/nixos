@@ -1,9 +1,22 @@
 { ... }: {
 
-  boot.isContainet = true;
+  boot.isContainer = true;
 
-  networking = { hostname = "iluvatar"; };
+  networking = { 
+    hostName = "iluvatar"; 
+    firewall.allowedTCPPorts = [80];
+  };
 
-  services.nginx = { enable = true; };
+  services = {
+  nginx = { 
+    enable = true;
+    gitweb = {
+      enable = true;
+    };
+    virtualHosts."hcssmith.com.local" = {
+    root = "/var/www";
+    };
+  };
+};
 
 }

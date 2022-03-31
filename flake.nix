@@ -37,5 +37,9 @@
         ./modules/gnome
         ./modules/cachix
       ];
+
+      hosts.iluvatar.modules = [
+        ./hosts/iluvatar
+      ];
     };
 }

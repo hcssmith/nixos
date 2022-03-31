@@ -10,6 +10,9 @@
 
   networking = {
     hostName = "eru";
+    hosts = {
+      "10.233.1.2" = ["hcssmith.com.local"];
+    };
     networkmanager.enable = true;
     interfaces.wlp59s0.useDHCP = true;
   };
