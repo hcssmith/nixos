@@ -1,5 +1,5 @@
 {pkgs, fetchFromGitHub, ...}:
-vimUtils.buildVimPlugin {
+pkgs.vimUtils.buildVimPlugin {
   name = "vim-miranda";
   src = fetchFromGitHub {
     owner = "zlahham";

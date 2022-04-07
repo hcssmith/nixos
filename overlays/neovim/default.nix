@@ -15,7 +15,7 @@ neovim.override {
         nerdtree
         nvim-lspconfig
         direnv-vim
-        vim-miranda
+        pkgs.vim-miranda
       ];
     };
 
