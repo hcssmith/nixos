@@ -29,7 +29,6 @@
 
       hostDefaults.modules =
         [ home-manager.nixosModules.home-manager
-        ./hosts/base.nix
       ] ++ sharedConfig;
 
       hosts.eru.modules = [

@@ -1,6 +1,7 @@
 {utils}:
 let
   customConfig = utils.lib.exportModules [
+    ./modules/base
     ./modules/cachix 
     ./modules/gnome
     ./modules/users/hcssmith
@@ -15,6 +16,7 @@ let
 
   sharedConfig = with customConfig; [
     cachix
+    base
     hcssmith
   ];
   desktopConfig = with customConfig; [

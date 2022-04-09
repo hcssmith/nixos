@@ -1,5 +1,16 @@
-{pkgs, ...}:
-{
+{ config, pkgs, lib, ... }:
+with lib;
+let cfg = config.customConfig;
+in {
+  options = {
+    customConfig.enable = mkOption {
+      type = types.bool;
+      default = true;
+      example = true;
+      description = "Enable config (required for flakes)";
+    };
+  };
+  config = mkIf cfg.enable {
   i18n.defaultLocale = "en_GB.UTF-8";
   console = {
     font = "Lat2-Terminus16";
@@ -12,4 +23,5 @@
       experimental-features = nix-command flakes
     '';
    };
+  };
 }
