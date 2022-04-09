@@ -4,8 +4,8 @@ set tabstop=4
 set mouse=a
 set clipboard=unnamedplus
 
-let g:airline_theme='solarized_flood'
-colorscheme NeoSolarized
+let g:airline_theme='base16_ocean'
+colorscheme darkblue
 
 let NERDTreeChDirMode=2
 
