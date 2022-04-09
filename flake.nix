@@ -10,6 +10,10 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
   outputs = inputs@{ self, nixpkgs, home-manager, nur, utils, neovim-nightly-overlay }:
+    let
+      suites = import ./suites.nix { inherit utils; };
+    in
+    with suites;
     utils.lib.mkFlake {
       inherit self inputs;
 
@@ -23,20 +27,14 @@
 
       overlay = import ./overlays;
 
-      # Modules shared between all hosts
       hostDefaults.modules =
         [ home-manager.nixosModules.home-manager
-        ./home/conf.nix
         ./hosts/base.nix
-      ];
+      ] ++ sharedConfig;
 
       hosts.eru.modules = [
         ./hosts/eru
-        ./home/hcssmith
-        ./users/hcssmith
-        ./modules/gnome
-        ./modules/cachix
-      ];
+      ] ++ desktopConfig ++ homeConfig;
 
       hosts.iluvatar.modules = [
         ./hosts/iluvatar
