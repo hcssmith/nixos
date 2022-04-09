@@ -1,6 +1,8 @@
 {config, pkgs, lib, ...}:
 with lib;
-let cfg = config.homeConfig.hcssmith.firefox;
+let 
+  cfg = config.homeConfig.hcssmith.firefox;
+
 in {
   options = {
     homeConfig.hcssmith.firefox.enable = mkEnableOption "Enable Firefox";
@@ -25,5 +27,5 @@ in {
             userChrome = builtins.readFile ../../../config/firefox/chrome.css;
           };
     };
-  };
+};
 }
