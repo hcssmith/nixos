@@ -1,8 +1,22 @@
 { config, pkgs, lib, ... }:
 with lib;
-let 
+let
   cfg = config.homeConfig;
-  userSetup = import ./fire
+  mkUserList = l: mapAttrs (name: value: (mkConfig value)) l;
+  mkConfig = x: {
+    home = {
+      keyboard = null;
+      packages = x.packages;
+    };
+    programs = { gpg.enable = true; };
+    services = {
+      gpg-agent = {
+        enable = true;
+        defaultCacheTtl = 10006400;
+        pinentryFlavor = "qt";
+      };
+    };
+  };
 in {
   options = {
     homeConfig.enable = mkOption {
@@ -12,12 +26,12 @@ in {
       description = "Enable home-manage config (required for flakes)";
     };
     homeConfig.users = mkOption {
-      default = {};
-      type = with types; attrsOf (submodule userOpts);
+      default = { };
+      type = with types; attrsOf (submodule (import ./user));
     };
   };
   config = mkIf cfg.enable {
     home-manager.useGlobalPkgs = true;
-    
+    home-manager.users = mkUserList cfg.users;
   };
 }

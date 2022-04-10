@@ -15,18 +15,22 @@
   };
 
   homeConfig = {
-    hcssmith = {
-      enable = true;
-      firefox.enable = true;
-      packages = with pkgs; [ xclip neovide neovim-o github-desktop ];
-      email = {
+    enable = true;
+    users = {
+      hcssmith = {
+        name = "hcssmith";
         enable = true;
-        address = "me@hcssmith.com";
-        name = "Hallam Smith";
-        gpgSignKey = "DFE3DF82F116584A";
-        passwordGpg = "0x6777079D642D66A8";
-        secretLocation = "hcssmith.com#email";
-        type = "fastmail.com";
+        #firefox.enable = true;
+        packages = with pkgs; [ xclip neovide neovim-o github-desktop miranda ];
+        #email = {
+        #  enable = true;
+        #  address = "me@hcssmith.com";
+        #  name = "Hallam Smith";
+        #  gpgSignKey = "DFE3DF82F116584A";
+        #  passwordGpg = "0x6777079D642D66A8";
+        #  secretLocation = "hcssmith.com#email";
+        #  type = "fastmail.com";
+        #};
       };
     };
   };

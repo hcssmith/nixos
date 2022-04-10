@@ -10,7 +10,6 @@ let
   home-managerConfig = utils.lib.exportModules [
     ./modules/home-manager
     ./modules/home-manager/email
-    ./modules/home-manager/hcssmith
     ./modules/home-manager/firefox
   ];
 
@@ -25,7 +24,6 @@ let
   homeConfig = with home-managerConfig; [
     email
     home-manager
-    hcssmith
     firefox
   ];
 in
