@@ -3,20 +3,31 @@ with lib;
 let
   cfg = config.homeConfig;
   mkUserList = l: mapAttrs (name: value: (mkConfig value)) l;
-  mkConfig = x: {
-    home = {
-      keyboard = null;
-      packages = x.packages;
-    };
-    programs = { gpg.enable = true; };
-    services = {
-      gpg-agent = {
-        enable = true;
-        defaultCacheTtl = 10006400;
-        pinentryFlavor = "qt";
+  mkFirefoxConfigList = l: mapAttrs (name: value: value) l;
+  
+  mkConfig = x:
+    mkIf x.enable {
+      home = {
+        keyboard = null;
+        packages = x.packages;
+      };
+      programs = {
+        gpg.enable = true;
+
+        firefox = mkIf x.firefox.enable {
+          enable = true;
+          extensions = x.firefox.extensions;
+          profiles = mkFirefoxConfigList x.firefox.profiles;
+        };
+      };
+      services = {
+        gpg-agent = {
+          enable = true;
+          defaultCacheTtl = 10006400;
+          pinentryFlavor = "qt";
+        };
       };
     };
-  };
 in {
   options = {
     homeConfig.enable = mkOption {

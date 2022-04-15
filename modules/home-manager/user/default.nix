@@ -12,5 +12,6 @@ with lib;
       type = (types.listOf types.package);
       default = [ ];
     };
+    firefox = (import ../firefox {inherit lib;}).options;
   };
 }
