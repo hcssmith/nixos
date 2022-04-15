@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 with lib;
-let cfg = config.customConfig.gnome;
+let cfg = config.HCSAbstract.gnome;
 in {
-  options = { customConfig.gnome.enable = mkEnableOption "Enable gnome"; };
+  options = { HCSAbstract.gnome.enable = mkEnableOption "Enable gnome"; };
   config = mkIf cfg.enable {
     services = {
       xserver = {

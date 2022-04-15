@@ -29,11 +29,11 @@
 
       hostDefaults.modules =
         [ home-manager.nixosModules.home-manager
-      ] ++ sharedConfig;
+      ] ++ HCSAbstract;
 
       hosts.eru.modules = [
         ./hosts/eru
-      ] ++ desktopConfig ++ homeConfig;
+      ]; 
 
       hosts.iluvatar.modules = [
         ./hosts/iluvatar

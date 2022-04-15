@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 with lib;
-let cfg = config.customConfig;
+let cfg = config.HCSAbstract;
 in {
   options = {
-    customConfig.enable = mkOption {
+    HCSAbstract.enable = mkOption {
       type = types.bool;
       default = true;
       example = true;

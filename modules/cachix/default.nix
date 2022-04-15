@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 
 with lib;
-let cfg = config.customConfig.cachix;
+let cfg = config.HCSAbstract.cachix;
 in {
   options = {
-    customConfig.cachix.enable = mkEnableOption "Enable cachix configuration.";
+    HCSAbstract.cachix.enable = mkEnableOption "Enable cachix configuration.";
   };
 
   config = mkIf cfg.enable {

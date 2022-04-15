@@ -1,7 +1,8 @@
 { lib, ... }:
-with lib; {
-  options = { 
-    enable = lib.mkEnableOption "Use firefox"; 
+with lib;
+{
+  options = {
+    enable = lib.mkEnableOption "Use firefox";
     extensions = mkOption {
       type = (types.listOf types.package);
       default = [ ];

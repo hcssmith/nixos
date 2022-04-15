@@ -13,5 +13,10 @@ with lib;
       default = [ ];
     };
     firefox = (import ../firefox {inherit lib;}).options;
+    enableEmailConfig = mkEnableOption "Enable email config";
+    email = mkOption {
+      default = { };
+      type = with types; attrsOf (submodule (import ../email));
+    };
   };
 }
