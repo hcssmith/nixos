@@ -1,35 +1,26 @@
 {utils}:
 let
-  customConfig = utils.lib.exportModules [
+  osConfig = utils.lib.exportModules [
     ./modules/base
     ./modules/cachix 
     ./modules/gnome
+  ];
+
+  userConfig = utils.lib.exportModules [
+    ./modules/home-manager
     ./modules/users/hcssmith
   ];
 
-  home-managerConfig = utils.lib.exportModules [
-    ./modules/home-manager
-    ./modules/home-manager/email
-    ./modules/home-manager/hcssmith
-    ./modules/home-manager/firefox
-  ];
-
-  sharedConfig = with customConfig; [
+  HCSAbstract = with osConfig; [
     cachix
     base
-    hcssmith
-  ];
-  desktopConfig = with customConfig; [
     gnome
-  ];
-  homeConfig = with home-managerConfig; [
-    email
-    home-manager
-    hcssmith
-    firefox
+  ] ++ [
+    userConfig.home-manager
+    userConfig.hcssmith
   ];
 in
   {
-    inherit sharedConfig desktopConfig homeConfig;
+    inherit HCSAbstract;
   }
   

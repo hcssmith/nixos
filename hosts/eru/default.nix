@@ -8,28 +8,12 @@
     };
   };
 
-  customConfig = {
+  HCSAbstract = {
     cachix.enable = true;
     gnome.enable = true;
-    users.hcssmith.enable = true;
+    userset.hcssmith.enable = true;
   };
 
-  homeConfig = {
-    hcssmith = {
-      enable = true;
-      firefox.enable = true;
-      packages = with pkgs; [ xclip neovide neovim-o github-desktop ];
-      email = {
-        enable = true;
-        address = "me@hcssmith.com";
-        name = "Hallam Smith";
-        gpgSignKey = "DFE3DF82F116584A";
-        passwordGpg = "0x6777079D642D66A8";
-        secretLocation = "hcssmith.com#email";
-        type = "fastmail.com";
-      };
-    };
-  };
 
   networking = {
     hostName = "eru";
