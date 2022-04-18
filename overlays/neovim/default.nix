@@ -11,6 +11,8 @@ neovim.override {
         vim-javascript
         vim-airline
         vim-airline-themes
+        vim-fugitive
+        vim-gitgutter
         NeoSolarized
         nerdtree
         nvim-lspconfig
