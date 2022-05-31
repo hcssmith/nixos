@@ -11,6 +11,7 @@
   HCSAbstract = {
     cachix.enable = true;
     gnome.enable = true;
+    virt.enable = true;
     userset.hcssmith.enable = true;
   };
 

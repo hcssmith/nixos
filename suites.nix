@@ -4,6 +4,7 @@ let
     ./modules/base
     ./modules/cachix 
     ./modules/gnome
+    ./modules/virt
   ];
 
   userConfig = utils.lib.exportModules [
@@ -15,6 +16,7 @@ let
     cachix
     base
     gnome
+    virt
   ] ++ [
     userConfig.home-manager
     userConfig.hcssmith
