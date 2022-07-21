@@ -1,4 +1,4 @@
-{pkgs, gnucash, fetchFromGitHub, ...}:
+{pkgs, gnucash, fetchurl, ...}:
 gnucash.overrideAttrs (oldAttrs: rec{
   version = "4.11";
   src = fetchurl {
