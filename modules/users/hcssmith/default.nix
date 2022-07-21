@@ -36,7 +36,7 @@ in {
             userChrome = builtins.readFile ../../../config/firefox/chrome.css;
           };
         };
-        packages = with pkgs; [ xclip nx neovide neovim-o github-desktop git ];
+        packages = with pkgs; [ xclip nx neovide neovim-o github-desktop git gnucash-o ];
         enableEmailConfig = true;
 
         email.hcssmith = {
